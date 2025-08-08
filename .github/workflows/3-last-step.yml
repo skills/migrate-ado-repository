@@ -68,4 +68,4 @@ jobs:
     uses: skills/exercise-toolkit/.github/workflows/finish-exercise.yml@v0.7.0
     with:
       issue-url: ${{ needs.find_exercise.outputs.issue-url }}
-      exercise-title: "(replace-me: Exercise title)"
+      exercise-title: "Migrate from Azure DevOps to GitHub"

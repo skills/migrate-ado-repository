@@ -57,6 +57,9 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_2_FILE }}
+          vars:
+            ado_repository_url=${{ github.event.client_payload.repository_url }}
+            login=${{ github.actor }}
 
       - name: Create comment - watching for progress
         uses: GrantBirki/comment@v2.1.1
@@ -64,9 +67,6 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
-          vars:
-            ado_repository_url=${{ github.event.client_payload.repository_url }}
-            login=${{ github.actor }}
 
       - name: Disable current workflow and enable next one
         run: |
