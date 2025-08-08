@@ -10,7 +10,6 @@ locals {
   repository_files = {
     for filename in local.discovered_files : filename => {
       content = file("${local.files_directory}/${filename}")
-      commit_message = "Add ${filename}"
     }
   }
   
@@ -26,7 +25,7 @@ resource "azuredevops_git_repository_file" "repo_files" {
 
   file                = each.key
   content             = each.value.content
-  commit_message      = each.value.commit_message
+  commit_message      = "Add ${each.key}"
 
   overwrite_on_create = true
 }
