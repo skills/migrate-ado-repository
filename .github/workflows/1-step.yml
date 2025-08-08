@@ -1,13 +1,9 @@
 name: Step 1 
 
 on:
+  repository_dispatch:
+    types: [start-migration]
   workflow_dispatch:
-  # Common event triggers: pull_request, push, issues, issue_comment (feel free to experiment)
-  # Docs: https://docs.github.com/en/actions/using-workflows/events-that-trigger-workflows
-  # Example:
-  # pull_request:
-  #   branches:
-  #     - main
 
 permissions:
   contents: read
@@ -56,6 +52,9 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_2_FILE }}
+          vars: |
+            ado_repository_url: ${{ github.event.client_payload.repository_url }}
+            login: ${{ github.actor }}
 
       - name: Create comment - watching for progress
         uses: GrantBirki/comment@v2.1.1
