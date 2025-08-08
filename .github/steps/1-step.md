@@ -10,7 +10,7 @@ Let's start up our project environment. This lab will be ran entirely from withi
 
 1. Wait a moment for Visual Studio Code to load in your browser.
 
-1. In the left sidebar, click the extensions tab and verify that the `X` and `Y` extensions are installed and enabled.
+1. In the left sidebar, click the extensions tab and verify that the `Terraform` extension is installed and enabled.
 
 
 
@@ -23,7 +23,7 @@ Let's start up our project environment. This lab will be ran entirely from withi
 1. Give your token a descriptive name (e.g., "Migration Exercise").
 1. Set the expiration date to at least 30 days from now.
 1. Under "Scopes", select "Full access" or customize with the required permissions.
-<!-- > TODO: Change this later -->
+   <!-- > TODO: Change this later -->
 1. Click "Create" and copy the generated token immediately.
 1. Store the token securely as you won't be able to see it again.
 
