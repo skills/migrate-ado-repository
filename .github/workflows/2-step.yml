@@ -1,9 +1,11 @@
 name: Step 2
 
-
 on:
-  workflow_dispatch:
-
+  push:
+    paths:
+      - "ado/config.yml"
+    branches:
+      - main
 
 permissions:
   contents: write
@@ -18,9 +20,99 @@ jobs:
     name: Find Exercise Issue
     uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.7.0
 
+  check_step_work:
+    name: Check step work
+    # needs: [find_exercise]
+    runs-on: ubuntu-latest
+    env:
+      ISSUE_REPOSITORY: ${{ github.repository }}
+      ISSUE_NUMBER: ${{ needs.find_exercise.outputs.issue-number }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Get response templates
+        uses: actions/checkout@v4
+        with:
+          repository: skills/exercise-toolkit
+          path: exercise-toolkit
+          ref: v0.7.0
+
+      - name: Find last comment
+        id: find-last-comment
+        uses: peter-evans/find-comment@v3
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          direction: last
+
+      # START: Check practical exercise
+
+      - name: Check for github_org configuration
+        id: check-github-org
+        continue-on-error: true
+        uses: skills/action-keyphrase-checker@v1
+        with:
+          text-file: ado/config.yml
+          keyphrase: "github_org:"
+          case-sensitive: true
+          minimum-occurrences: 1
+          maximum-occurrences: 1
+
+
+      - name: Check for target_github_repo_name configuration
+        id: check-repo-name
+        continue-on-error: true
+        uses: skills/action-keyphrase-checker@v1
+        with:
+          text-file: ado/config.yml
+          keyphrase: "target_github_repo_name:"
+          case-sensitive: true
+          minimum-occurrences: 1
+          maximum-occurrences: 1
+
+      # END: Check practical exercise
+
+      - name: Update comment - step results
+        uses: GrantBirki/comment@v2.1.1
+        with:
+          repository: ${{ env.ISSUE_REPOSITORY }}
+          issue-number: ${{ env.ISSUE_NUMBER }}
+          comment-id: ${{ steps.find-last-comment.outputs.comment-id }}
+          edit-mode: replace
+          file: exercise-toolkit/markdown-templates/step-feedback/step-results-table.md
+          vars: |
+            step_number: 2
+            results_table:
+              - description: "Added github_org configuration"
+                passed: ${{ steps.check-github-org.outcome == 'success' }}
+              - description: "Added target_github_repo_name configuration"
+                passed: ${{ steps.check-repo-name.outcome == 'success' }}
+
+      - name: Fail job if not all checks passed
+        if: contains(steps.*.outcome, 'failure')
+        run: exit 1
+
+  load_config:
+    name: Load Config File
+    runs-on: ubuntu-latest
+    outputs:
+      config: ${{ steps.load-config.outputs.result }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Load YAML config with yq
+        id: load-config
+        uses: mikefarah/yq@master
+        with:
+          cmd: yq eval -o=json './ado/config.yml'
+
   post_next_step_content:
     name: Post next step content
-    needs: [find_exercise]
+    # needs: [find_exercise, check_step_work, load_config]
+    needs: [check_step_work, load_config]
+
     runs-on: ubuntu-latest
     env:
       ISSUE_REPOSITORY: ${{ github.repository }}
@@ -52,6 +144,12 @@ jobs:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_3_FILE }}
+          vars: |
+            ado_url: ${{ fromJson(needs.load_config.outputs.config).ado_url }}
+            ado_project_name: ${{ fromJson(needs.load_config.outputs.config).ado_project_name }}
+            ado_repository_name: ${{ fromJson(needs.load_config.outputs.config).ado_repository_name }}
+            github_org: ${{ fromJson(needs.load_config.outputs.config).github_org }}
+            target_github_repo_name: ${{ fromJson(needs.load_config.outputs.config).target_github_repo_name }}
 
       - name: Create comment - watching for progress
         uses: GrantBirki/comment@v2.1.1
@@ -61,6 +159,7 @@ jobs:
           file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
 
       - name: Disable current workflow and enable next one
+        if: false
         run: |
           gh workflow disable "${{github.workflow}}"
           gh workflow enable "Step 3"

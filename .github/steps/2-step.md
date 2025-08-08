@@ -1,14 +1,29 @@
 ## Step 2: Setup GitHub Migration Tools
 
-🎉 **Congratulations!** Your Azure DevOps project has been successfully created and is now available at: [{{ ado_repository_url }}]({{ ado_repository_url }})
+🎉 **Congratulations!** You've successfully created your new Azure DevOps environment!
 
-Now let's set up the GitHub migration tools to prepare for migrating repositories from Azure DevOps to GitHub.
+Take a moment to explore your Azure DevOps project:
+
+- **Project Dashboard**: [{{ ado_project_url }}]({{ ado_project_url }})
+- **Repository**: [{{ ado_repository_url }}]({{ ado_repository_url }})
+<!-- - **Boards**: [{{ ado_boards_url }}]({{ ado_boards_url }})
+- **Pipelines**: [{{ ado_pipelines_url }}]({{ ado_pipelines_url }}) -->
+
+This Azure DevOps environment contains sample repository, work items, and other components you will be migrating to GitHub. Feel free to browse around and familiarize yourself with the structure before we begin the migration process.
+
+Now let's set up the GitHub migration tools to prepare for migrating this Azure DevOps project to GitHub.
 
 ### ⌨️ Activity: Setup GitHub Personal Access Token
 
-1. Authenticate with GitHub CLI using the required scopes for migration and extension installation:
+The GitHub token provided in this codespace has limited scopes. For migration operations and extension installation, we need a token with broader permissions including `admin:org` access.
+
+> [!IMPORTANT]
+> You must be an **owner** of a GitHub organization to perform migrations. If you don't have your own organization, you can [create a personal organization for free](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch).
+
+1. First, unset the existing token and authenticate with GitHub CLI using the required scopes for migration and extension installation:
 
    ```bash
+   unset GITHUB_TOKEN
    gh auth login --scopes "repo,admin:org,workflow"
    ```
 
@@ -71,3 +86,25 @@ Now let's set up the GitHub migration tools to prepare for migrating repositorie
 - You can revoke the migrator role later using the `revoke-migrator-role` command
 
 </details>
+
+### ⌨️ Activity: Update Migration Configuration
+
+Now let's prepare the migration configuration so we can generate a ready-to-use migration command for you in the next step.
+
+1. Open the `ado/config.yml` file in this repository.
+
+1. Add the following two lines to the configuration file:
+
+   ```yaml
+   github_org: "GITHUB_ORG_NAME_PLACEHOLDER"
+   target_github_repo_name: "migrated-repo"
+   ```
+
+   1. Replace `GITHUB_ORG_NAME_PLACEHOLDER` with the name of your GitHub organization (the same one you used in the previous activity).
+
+   1. You can customize `target_github_repo_name` to whatever you'd like to call the migrated repository.
+
+1. Commit and push your changes to the configuration file. Mona will provide you with the next step!
+
+> [!NOTE]
+> We only use these configuration values to prepare the exact migration command you'll need in the next step.

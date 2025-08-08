@@ -5,5 +5,5 @@ ado_repository_name: "MigrateFromADORepo"
 
 # Update these values before running the bootstrap script
 
-ado_url: "https://dev.azure.com/alekfidelus"  # e.g "https://dev.azure.com/your-org"
+ado_url: ""  # e.g "https://dev.azure.com/your-org"
 
