@@ -65,7 +65,7 @@ echo "Bootstrap completed successfully!"
 echo "Azure DevOps project has been created and configured."
 
 # Trigger the repository dispatch event to start the next step
-echo "Triggering next exercise step..."
+echo "Triggering next exercise step on $GITHUB_REPOSITORY repository ..."
 
 gh api repos/$GITHUB_REPOSITORY/dispatches \
     --field event_type=start-migration \
