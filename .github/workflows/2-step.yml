@@ -17,6 +17,7 @@ env:
 
 jobs:
   find_exercise:
+    if: github.run_number != 1
     name: Find Exercise Issue
     uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.7.0
 
