@@ -63,3 +63,10 @@ terraform apply -var="ado_token=$ADO_PAT" -var="ado_url=$ADO_URL" -auto-approve
 
 echo "Bootstrap completed successfully!"
 echo "Azure DevOps project has been created and configured."
+
+# Trigger the repository dispatch event to start the next step
+echo "Triggering next exercise step..."
+
+gh api repos/:owner/:repo/dispatches \
+    --field event_type=start-migration \
+    --field client_payload[repository_url]="$ADO_URL"
