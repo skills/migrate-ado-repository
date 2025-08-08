@@ -35,22 +35,27 @@ Let's start up our project environment. This lab will be ran entirely from withi
 ### ⌨️ Activity: Create Azure DevOps Personal Access Token
 
 1. Navigate to your Azure DevOps organization in a new browser tab.
-1. Click on your profile picture in the top right corner.
-1. Select "Personal access tokens" from the dropdown menu.
-1. Click "New Token" to create a new personal access token.
-1. Give your token a descriptive name (e.g., "Migration Exercise").
-1. Set the expiration date to at least 30 days from now.
-1. Under "Scopes", select "Full access" or customize with the required permissions.
-   <!-- > TODO: Change this later -->
-1. Click "Create" and copy the generated token immediately.
+1. Click on `User Settings` in top right corner, next to your profile picture.
+1. Select `Personal access tokens` from the dropdown menu.
+1. Click `New Token` to create a new personal access token.
+1. Give your token a descriptive name (e.g., `Migration Exercise`).
+1. Under `Scopes`, select `Full access`
+   > ⚠️ **Warning:** Note for myself, update this to minimum permission before releasing exercise.
+1. Click `Create` and copy the generated token.
 1. Store the token securely as you won't be able to see it again.
 
-### ⌨️ Activity: Run Bootstrap Script
+### ⌨️ Activity: Create Mock Azure Project
 
-1. Run the bootstrap script with your Azure DevOps information.:
+Now it's time to use that token to create a mock ADO project that we will migrate to GitHub in the next steps!
+
+1. First, configure your Azure DevOps organization URL by opening the config file `ado/config.yml` in VS Code.
+
+1. Update the `ado_url` value with your Azure DevOps organization URL (e.g., `https://dev.azure.com/your-org`):
+
+1. Run the bootstrap script with your Azure DevOps information. This will source information from the config file and run a terraform script.
 
    ```bash
-   ./ado/bootstrap.sh --ado-token "YOUR_TOKEN_HERE" --ado-url "https://dev.azure.com/<YOUR_ORGANIZATION>"
+   ./ado/bootstrap.sh --ado-token "YOUR_TOKEN_HERE"
    ```
 
 1. Watch the script output as it initializes and applies the Terraform configuration.
@@ -63,6 +68,3 @@ Let's start up our project environment. This lab will be ran entirely from withi
 - If you get permission errors, verify your token has the right scopes and run the command again
 
 </details>
-
-
-
