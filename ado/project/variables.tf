@@ -4,11 +4,10 @@ variable "ado_token" {
   description = "Token used to access Azure DevOps"
 }
 
-# variable "ado_url" {
-#   type = string
-#   description = "Azure DevOps url"
-#   default = "https://dev.azure.com/your_organization"
-# }
+variable "ado_url" {
+  type = string
+  description = "Azure DevOps url"
+}
 
 
 variable "project_name" {
