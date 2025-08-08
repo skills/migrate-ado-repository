@@ -1,5 +1,27 @@
 ## Step 1: Setting up your Azure DevOps Environment
 
+Welcome to the Azure DevOps to GitHub migration exercise! In this hands-on workshop, you'll learn how to migrate repositories from Azure DevOps to GitHub using GitHub's official migration tools.
+
+```mermaid
+flowchart LR
+    A[Step 1: Setup Azure DevOps Environment] --> B[Step 2: Setup GitHub Migration Tools]
+    B --> C[Step 3: Migrate Repository]
+    C --> D[Review & Next Steps]
+
+    style A fill:#0969da,color:#ffffff
+    style B fill:#8250df,color:#ffffff
+    style C fill:#1a7f37,color:#ffffff
+    style D fill:#bc4c00,color:#ffffff
+```
+
+To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
+
+This approach simulates real-world migration scenarios where you have existing Azure DevOps projects with:
+
+- Sample repository with code, commits, and branches
+- Work items (user stories, tasks, bugs)
+- Project settings and configurations
+
 ### ⌨️ Activity: Login to Codespace
 
 Let's start up our project environment. This lab will be ran entirely from within a GitHub Codespace.
@@ -8,11 +30,7 @@ Let's start up our project environment. This lab will be ran entirely from withi
 
    [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/{{full_repo_name}}?quickstart=1)
 
-1. Wait a moment for Visual Studio Code to load in your browser.
-
-1. In the left sidebar, click the extensions tab and verify that the `Terraform` extension is installed and enabled.
-
-
+1. Wait a moment for Visual Studio Code to fully load in your browser. This can take a minute or two.
 
 ### ⌨️ Activity: Create Azure DevOps Personal Access Token
 
@@ -26,7 +44,6 @@ Let's start up our project environment. This lab will be ran entirely from withi
    <!-- > TODO: Change this later -->
 1. Click "Create" and copy the generated token immediately.
 1. Store the token securely as you won't be able to see it again.
-
 
 ### ⌨️ Activity: Run Bootstrap Script
 
@@ -46,3 +63,6 @@ Let's start up our project environment. This lab will be ran entirely from withi
 - If you get permission errors, verify your token has the right scopes and run the command again
 
 </details>
+
+
+
