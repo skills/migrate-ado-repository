@@ -4,11 +4,6 @@ on:
   repository_dispatch:
     types: [start-migration]
   workflow_dispatch:
-  # This workflow can be triggered via:
-  # 1. Repository dispatch API/CLI with custom data
-  # 2. Manual workflow dispatch for testing
-  # Repository dispatch example:
-  # gh api repos/:owner/:repo/dispatches --field event_type=start-migration --field client_payload[repository_url]=https://dev.azure.com/org/project/_git/repo
 
 permissions:
   contents: read
