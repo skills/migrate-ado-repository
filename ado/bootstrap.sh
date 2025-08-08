@@ -67,6 +67,7 @@ echo "Azure DevOps project has been created and configured."
 # Trigger the repository dispatch event to start the next step
 echo "Triggering next exercise step..."
 
-gh api repos/:owner/:repo/dispatches \
+gh api repos/$GITHUB_REPOSITORY/dispatches \
     --field event_type=start-migration \
     --field client_payload[repository_url]="$ADO_URL"
+
