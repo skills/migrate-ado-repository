@@ -25,7 +25,53 @@ resource "azuredevops_git_repository_file" "repo_files" {
 
   file                = each.key
   content             = each.value.content
-  commit_message      = "Add ${each.key}"
+  overwrite_on_create = true
+  
+  # Prevent parallel execution to ensure distinct commits
+  lifecycle {
+    create_before_destroy = false
+  }
+}
 
+# Additional branch for the repository
+resource "azuredevops_git_repository_branch" "update_readme" {
+  depends_on = [azuredevops_git_repository_file.repo_files]
+  
+  repository_id = azuredevops_git_repository.repo.id
+  name          = "update-readme"
+  ref_branch    = azuredevops_git_repository.repo.default_branch
+}
+
+# Create updated README.md file on the update-readme branch
+resource "azuredevops_git_repository_file" "updated_readme" {
+  depends_on = [azuredevops_git_repository_branch.update_readme]
+  
+  repository_id       = azuredevops_git_repository.repo.id
+  branch              = "refs/heads/update-readme"
+  
+  file                = "README.md"
+  content             = <<-EOT
+    # Migration Demo Repository (Updated)
+
+    This repository demonstrates Azure DevOps to GitHub migration using infrastructure as code.
+
+    ## Contents
+
+    - `app.py` - Python application
+    - `README.md` - Documentation (updated)
+    - `azure-pipelines.yml` - CI/CD pipeline
+
+    ## Migration Features
+
+    - Multi-file repository setup
+    - Branch policies and build validation  
+    - Work item management
+    - Multi-branch workflow demonstration
+
+    Ready for GitHub migration!
+  EOT
+  commit_message      = "Update README with comprehensive documentation"
+  
   overwrite_on_create = true
 }
+
