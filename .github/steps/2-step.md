@@ -2,14 +2,11 @@
 
 🎉 **Congratulations!** You've successfully created your new Azure DevOps environment!
 
-Take a moment to explore your Azure DevOps project:
+Take a moment to explore your Azure DevOps repository :
 
-- **Project Dashboard**: [{{ ado_project_url }}]({{ ado_project_url }})
-- **Repository**: [{{ ado_repository_url }}]({{ ado_repository_url }})
-<!-- - **Boards**: [{{ ado_boards_url }}]({{ ado_boards_url }})
-- **Pipelines**: [{{ ado_pipelines_url }}]({{ ado_pipelines_url }}) -->
+- **ADO Repository**: [{{ ado_repository_url }}]({{ ado_repository_url }})
 
-This Azure DevOps environment contains sample repository, work items, and other components you will be migrating to GitHub. Feel free to browse around and familiarize yourself with the structure before we begin the migration process.
+This Azure DevOps environment contains sample repository, work items, a pull request and other components you will be migrating to GitHub. Feel free to browse around and familiarize yourself with the structure before we begin the migration process.
 
 Now let's set up the GitHub migration tools to prepare for migrating this Azure DevOps project to GitHub.
 
@@ -49,13 +46,12 @@ The GitHub token provided in this codespace has limited scopes. For migration op
    gh extension install github/gh-ado2gh
    ```
 
-1. Update the extension to the latest version:
+1. Test that the extension is working by running:
 
    ```bash
-   gh extension upgrade github/gh-ado2gh
+   gh ado2gh --help
    ```
 
-1. Test that the extension is working by running `gh ado2gh --version`.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
@@ -67,15 +63,19 @@ The GitHub token provided in this codespace has limited scopes. For migration op
 
 ### ⌨️ Activity: Setup GitHub Migrator Role
 
-1. Identify the GitHub organization you want to migrate repositories to.
-1. Decide whether to grant the migrator role to yourself or a team (teams are recommended).
+1. Set `GH_PAT` environment variable
+
+   ```bash
+   export GH_PAT=$(gh auth token)
+   ```
+
 1. Run the following command to grant the migrator role:
 
    ```bash
    gh ado2gh grant-migrator-role --actor {{ login }} --actor-type USER --github-org YOUR_ORG_NAME
    ```
 
-1. Replace `YOUR_ORG_NAME` with your GitHub organization name.
+   Replace `YOUR_ORG_NAME` with the GitHub organization name you want to migrate repositories to.
 1. Verify the role was granted successfully by checking the command output.
 
 <details>
