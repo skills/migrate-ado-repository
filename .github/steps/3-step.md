@@ -52,14 +52,9 @@ Based on your configuration, you'll be migrating:
 
 {% endif %}
 
-This command will migrate:
-
-- **From**: `{{ ado_url }}/{{ ado_project_name }}/_git/{{ ado_repository_name }}`
-- **To**: `https://github.com/{{ github_org }}/{{ target_github_repo_name }}`
-
 1. Monitor the migration progress in the terminal output.
 
-1. When the migration completes, verify the migrated repository by visiting: `https://github.com/{{ github_org }}/{{ target_github_repo_name }}`
+1. When the migration completes, verify the migrated repository by visiting: https://github.com/{{ github_org }}/{{ target_github_repo_name }}
 
 1. Check the migration log issue that was automatically created in the migrated repository for any warnings or errors.
 

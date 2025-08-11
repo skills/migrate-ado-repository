@@ -43,6 +43,7 @@ Let's start up our project environment. This lab will be ran entirely from withi
    - **Code**: Read, write & manage (to create repositories, branches, and files)
    - **Work Items**: Read & write (to create work items)
    - **Build**: Read & execute (to create and manage pipelines)
+   - **Identity**: Read (required for migration tools)
 1. Click `Create` and store the token securely as you won't be able to see it again.
 
 ### ⌨️ Activity: Create Mock Azure Project
@@ -60,7 +61,7 @@ Now it's time to use that token to create a mock ADO project that we will migrat
    ```
 
 1. Watch the script output as it initializes and applies the Terraform configuration.
-1. Wait for the script to complete successfully.
+1. Mona will comment here with the next step as the script completes successfully.
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>

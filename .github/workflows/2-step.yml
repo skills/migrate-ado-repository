@@ -96,6 +96,7 @@ jobs:
         run: exit 1
 
   load_config:
+    needs: [find_exercise]
     name: Load Config File
     runs-on: ubuntu-latest
     outputs:
@@ -158,7 +159,6 @@ jobs:
           file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
 
       - name: Disable current workflow and enable next one
-        if: false
         run: |
           gh workflow disable "${{github.workflow}}"
           gh workflow enable "Step 3"
