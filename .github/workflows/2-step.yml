@@ -23,7 +23,7 @@ jobs:
 
   check_step_work:
     name: Check step work
-    # needs: [find_exercise]
+    needs: [find_exercise]
     runs-on: ubuntu-latest
     env:
       ISSUE_REPOSITORY: ${{ github.repository }}
@@ -111,9 +111,7 @@ jobs:
 
   post_next_step_content:
     name: Post next step content
-    # needs: [find_exercise, check_step_work, load_config]
-    needs: [check_step_work, load_config]
-
+    needs: [find_exercise, check_step_work, load_config]
     runs-on: ubuntu-latest
     env:
       ISSUE_REPOSITORY: ${{ github.repository }}
