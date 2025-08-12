@@ -22,7 +22,9 @@ The GitHub token provided in this codespace has limited scopes. For migration op
 > [!IMPORTANT]
 > You must be an **owner** of a GitHub organization to perform migrations. If you don't have your own organization, you can [create a personal organization for free](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch).
 
-1. First, unset the existing token and authenticate with GitHub CLI using the required scopes for migration and extension installation:
+1. First, unset the existing token and authenticate with GitHub CLI using the required scopes for migration and extension installation.
+
+   Run this command in your codespace terminal:
 
    ```bash
    unset GITHUB_TOKEN
@@ -30,20 +32,24 @@ The GitHub token provided in this codespace has limited scopes. For migration op
    ```
 
 1. Follow the interactive prompts to authenticate (choose HTTPS for Git operations when prompted).
-1. Verify authentication by running `gh auth status`.
+1. Verify authentication by running:
 
-<details>
-<summary>Having trouble? 🤷</summary><br/>
+   ```bash
+   gh auth status
+   ```
 
-- Make sure you have admin permissions in your GitHub organization
-- If your organization uses SAML SSO, authorize the token for SSO after creation
-- Keep the token secure and never share it publicly
-- You can only use classic personal access tokens, not fine-grained tokens for migrations
-- If `gh auth login` fails, try the manual token creation method
+   <details>
+   <summary>Having trouble? 🤷</summary><br/>
 
-</details>
+   - Make sure you have admin permissions in your GitHub organization
+   - If your organization uses SAML SSO, authorize the token for SSO after creation
+   - Keep the token secure and never share it publicly
+
+   </details>
 
 ### ⌨️ Activity: Download ado2gh Extension
+
+Now let's install the `ado2gh` extension from the [GitHub Enterprise Importer](https://github.com/github/gh-gei) offering.
 
 1. Install the ado2gh extension by running the following command:
 
@@ -75,22 +81,22 @@ The GitHub token provided in this codespace has limited scopes. For migration op
 
 1. Run the following command to grant the migrator role:
 
+   Replace `YOUR_ORG_NAME` with the GitHub organization name you want to migrate repositories to.
+
    ```bash
    gh ado2gh grant-migrator-role --actor {{ login }} --actor-type USER --github-org YOUR_ORG_NAME
    ```
 
-   Replace `YOUR_ORG_NAME` with the GitHub organization name you want to migrate repositories to.
-
 1. Verify the role was granted successfully by checking the command output.
 
-<details>
-<summary>Having trouble? 🤷</summary><br/>
+   <details>
+   <summary>Having trouble? 🤷</summary><br/>
 
-- You need organization owner permissions to grant the migrator role
-- The migrator role allows importing/exporting any repository in the organization
-- You can revoke the migrator role later using the `revoke-migrator-role` command
+   - You need organization owner permissions to grant the migrator role
+   - The migrator role allows importing/exporting any repository in the organization
+   - You can revoke the migrator role later using the `revoke-migrator-role` command
 
-</details>
+   </details>
 
 ### ⌨️ Activity: Update Migration Configuration
 
