@@ -14,7 +14,7 @@ flowchart LR
     style D fill:#bc4c00,color:#ffffff
 ```
 
-To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
+To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. In this exercise, you'll learn to use [GitHub Enterprise Importer](https://docs.github.com/en/migrations/using-github-enterprise-importer/understanding-github-enterprise-importer/about-github-enterprise-importer), GitHub's official migration tool that provides high-fidelity migrations while preserving Git history and metadata. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
 
 This approach simulates real-world migration scenarios where you have existing Azure DevOps projects with:
 
@@ -34,6 +34,8 @@ Let's start up our project environment. This lab will be ran entirely from withi
 
 ### ⌨️ Activity: Create Azure DevOps Personal Access Token
 
+Now let's configure Azure DevOps credentials so we can create a mock project for this lab.
+
 1. Navigate to your Azure DevOps organization in a new browser tab.
 1. Click on `User Settings` in top right corner, next to your profile picture.
 1. Select `Personal access tokens` from the dropdown menu. Click `New Token` to create a new personal access token.
@@ -50,11 +52,11 @@ Let's start up our project environment. This lab will be ran entirely from withi
 
 Now it's time to use that token to create a mock ADO project that we will migrate to GitHub in the next steps!
 
-1. First, configure your Azure DevOps organization URL by opening the config file `ado/config.yml` in VS Code.
+1. First, configure your Azure DevOps organization URL by opening the config file `ado/config.yml` in your codespace.
 
 1. Update the `ado_url` value with your Azure DevOps organization URL (e.g., `https://dev.azure.com/your-org`):
 
-1. Run the bootstrap script with your Azure DevOps information. This will source information from the config file and run a terraform script.
+1. Run the bootstrap script, this will source information from the config file and run a [Terraform](https://developer.hashicorp.com/terraform) script to create a project.
 
    ```bash
    ./ado/bootstrap.sh --ado-token "YOUR_TOKEN_HERE"
@@ -66,7 +68,7 @@ Now it's time to use that token to create a mock ADO project that we will migrat
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
-- Double-check that your token and organization URL are correct
+- Double-check that your organization URL is correct
 - If you get permission errors, verify your token has the right scopes and run the command again
 
 </details>

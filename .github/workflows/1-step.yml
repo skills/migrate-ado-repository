@@ -1,4 +1,4 @@
-name: Step 1 
+name: Step 1
 
 on:
   repository_dispatch:
@@ -45,7 +45,7 @@ jobs:
           file: exercise-toolkit/markdown-templates/step-feedback/step-finished-prepare-next-step.md
           vars: |
             next_step_number: 2
-          
+
       - name: Create comment - add step content
         uses: GrantBirki/comment@v2.1.1
         with:
@@ -53,7 +53,11 @@ jobs:
           issue-number: ${{ env.ISSUE_NUMBER }}
           file: ${{ env.STEP_2_FILE }}
           vars: |
-            ado_repository_url: ${{ github.event.client_payload.repository_url }}
+            ado_repository_url: ${{ github.event.client_payload.ado_repository_url }}
+            organization_url: ${{ github.event.client_payload.organization_url }}
+            project_name: ${{ github.event.client_payload.project_name }}
+            repository_name: ${{ github.event.client_payload.repository_name }}
+            update_readme_work_item_id: ${{ github.event.client_payload.update_readme_work_item_id }}
             login: ${{ github.actor }}
 
       - name: Create comment - watching for progress
