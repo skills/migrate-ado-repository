@@ -14,7 +14,7 @@ flowchart LR
     style D fill:#bc4c00,color:#ffffff
 ```
 
-To practice migrating from [Azure DevOps](https://dev.azure.com/) to GitHub, you need a realistic source environment. In this exercise, you'll learn to use [GitHub Enterprise Importer](https://docs.github.com/en/migrations/using-github-enterprise-importer/understanding-github-enterprise-importer/about-github-enterprise-importer), GitHub's official migration tool that provides high-fidelity migrations while preserving Git history and metadata. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
+To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. In this exercise, you'll learn to use [GitHub Enterprise Importer](https://docs.github.com/en/migrations/using-github-enterprise-importer/understanding-github-enterprise-importer/about-github-enterprise-importer), GitHub's official migration tool that provides high-fidelity migrations while preserving Git history and metadata. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
 
 This approach simulates real-world migration scenarios where you have existing Azure DevOps projects with:
 
@@ -40,14 +40,12 @@ Now let's configure Azure DevOps credentials so we can create a mock project for
 1. Click on `User Settings` in top right corner, next to your profile picture.
 1. Select `Personal access tokens` from the dropdown menu. Click `New Token` to create a new personal access token.
 1. Give your token a descriptive name (e.g., `GitHub Skills Migration Exercise`).
-1. Under `Scopes`, select `Custom defined`. Click `Show all scopes` at the bottom to expand all available options, then choose the following scopes:
-
-   - **Build**: Read & execute (to create and manage pipelines)
-   - **Code**: Read, write & manage (to create repositories, branches, and files)
-   - **Identity**: Read (required for migration tools)
+1. Under `Scopes`, select `Custom defined` and choose the following scopes:
    - **Project and Team**: Read, write & manage (to create a project)
+   - **Code**: Read, write & manage (to create repositories, branches, and files)
    - **Work Items**: Read & write (to create work items)
-
+   - **Build**: Read & execute (to create and manage pipelines)
+   - **Identity**: Read (required for migration tools)
 1. Click `Create` and store the token securely as you won't be able to see it again.
 
 ### ⌨️ Activity: Create Mock Azure Project
@@ -59,8 +57,6 @@ Now it's time to use that token to create a mock ADO project that we will migrat
 1. Update the `ado_url` value with your Azure DevOps organization URL (e.g., `https://dev.azure.com/your-org`):
 
 1. Run the bootstrap script, this will source information from the config file and run a [Terraform](https://developer.hashicorp.com/terraform) script to create a project.
-
-   Replace `YOUR_TOKEN_HERE` with the Personal Access Token you created.
 
    ```bash
    ./ado/bootstrap.sh --ado-token "YOUR_TOKEN_HERE"
