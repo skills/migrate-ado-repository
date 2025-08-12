@@ -18,9 +18,9 @@ GitHub Enterprise Importer supports migrating the following repository data from
 - **Attachments on pull requests**
 - **Branch policies for the repository** (user-scoped branch policies and cross-repo branch policies are not included)
 
-> 📝 **Note**: If you want to migrate Azure Pipelines to GitHub Actions, contact your GitHub account manager for assistance.
+### ⌨️ Activity: Migrate Your Azure DevOps Repository to GitHub
 
-### ⌨️ Activity: Run the migrate-repo command
+Now it's time to perform the actual migration! You'll use the `ado2gh` extension to migrate your Azure DevOps repository, preserving all the Git history, pull requests, and other metadata.
 
 1. Set your GitHub Personal Access Token as an environment variable using the token you authenticated with in previous step.
 
@@ -65,7 +65,7 @@ GitHub Enterprise Importer supports migrating the following repository data from
 
 {% endif %}
 
-1. Monitor the migration progress in the terminal output.
+1. Monitor the migration progress in the terminal output. This can take few minutes
 
 1. When the migration completes, verify the migrated repository and migrated data by checking the following:
 
@@ -81,10 +81,10 @@ GitHub Enterprise Importer supports migrating the following repository data from
 
 1. Check the migration log issue that was automatically created in the migrated repository for any warnings or errors.
 
-1. With the migration successful, add a comment to this issue to learn next steps
+1. With the migration successful, add a comment to this issue to complete the exercise and learn next steps:
 
    ```md
-   Hey @professortocat, I've migrated my repository! What's next?
+   Hey @professortocat, I've successfully completed the Azure DevOps to GitHub migration exercise!
    ```
 
 <details>
