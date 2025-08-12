@@ -75,11 +75,13 @@ The GitHub token provided in this codespace has limited scopes. For migration op
 
 1. Run the following command to grant the migrator role:
 
+   Replace `YOUR_ORG_NAME` with the GitHub organization name you want to migrate repositories to.
+
    ```bash
    gh ado2gh grant-migrator-role --actor {{ login }} --actor-type USER --github-org YOUR_ORG_NAME
    ```
 
-   Replace `YOUR_ORG_NAME` with the GitHub organization name you want to migrate repositories to.
+
 
 1. Verify the role was granted successfully by checking the command output.
 
