@@ -14,7 +14,7 @@ flowchart LR
     style D fill:#bc4c00,color:#ffffff
 ```
 
-To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
+To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. In this exercise, you'll learn to use [GitHub Enterprise Importer](https://docs.github.com/en/migrations/using-github-enterprise-importer/understanding-github-enterprise-importer/about-github-enterprise-importer), GitHub's official migration tool that provides high-fidelity migrations while preserving Git history and metadata. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
 
 This approach simulates real-world migration scenarios where you have existing Azure DevOps projects with:
 

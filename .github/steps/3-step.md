@@ -7,6 +7,19 @@ Based on your configuration, you'll be migrating:
 - **Azure DevOps**: `{{ ado_url }}/{{ ado_project_name }}/_git/{{ ado_repository_name }}`
 - **To GitHub**: `https://github.com/{{ github_org }}/{{ target_github_repo_name }}`
 
+### Data that is Migrated
+
+GitHub Enterprise Importer supports migrating the following repository data from Azure DevOps to GitHub Enterprise Cloud:
+
+- **Git source** (including commit history)
+- **Pull requests**
+- **User history for pull requests**
+- **Work item links on pull requests**
+- **Attachments on pull requests**
+- **Branch policies for the repository** (user-scoped branch policies and cross-repo branch policies are not included)
+
+> 📝 **Note**: If you want to migrate Azure Pipelines to GitHub Actions, contact your GitHub account manager for assistance.
+
 ### ⌨️ Activity: Run the migrate-repo command
 
 1. Set your GitHub Personal Access Token as an environment variable using the token you authenticated with in previous step.
@@ -54,7 +67,17 @@ Based on your configuration, you'll be migrating:
 
 1. Monitor the migration progress in the terminal output.
 
-1. When the migration completes, verify the migrated repository by visiting: https://github.com/{{ github_org }}/{{ target_github_repo_name }}
+1. When the migration completes, verify the migrated repository and migrated data by checking the following:
+
+   | Component                   | Link                                                                                |
+   | --------------------------- | ----------------------------------------------------------------------------------- |
+   | **Repository**              | https://github.com/{{ github_org }}/{{ target_github_repo_name }}                   |
+   | **Branches**                | https://github.com/{{ github_org }}/{{ target_github_repo_name }}/branches          |
+   | **Pull Requests**           | https://github.com/{{ github_org }}/{{ target_github_repo_name }}/pulls             |
+   | **Commit History**          | https://github.com/{{ github_org }}/{{ target_github_repo_name }}/commits/main/     |
+   | **Branch Protection Rules** | https://github.com/{{ github_org }}/{{ target_github_repo_name }}/settings/branches |
+
+   > 📝 **Note**: Branch Protection Rules may not be visible on free GitHub organizations.
 
 1. Check the migration log issue that was automatically created in the migrated repository for any warnings or errors.
 
@@ -63,7 +86,6 @@ Based on your configuration, you'll be migrating:
    ```md
    Hey @professortocat, I've migrated my repository! What's next?
    ```
-
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>
