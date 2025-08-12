@@ -75,7 +75,7 @@ az repos pr create \
   --org "$ORGANIZATION_URL" \
   --work-items "$WORK_ITEM_ID" > /dev/null || true
 
-# echo "Sample pull request creation attempted."
+echo "Sample pull request creation attempted."
 
 # Trigger the repository dispatch event to start the next step
 echo "Triggering next exercise step on $GITHUB_REPOSITORY repository ..."

@@ -20,7 +20,7 @@ jobs:
 
   post_next_step_content:
     name: Post next step content
-    # needs: [find_exercise]
+    needs: [find_exercise]
     runs-on: ubuntu-latest
     env:
       ISSUE_REPOSITORY: ${{ github.repository }}
@@ -68,7 +68,6 @@ jobs:
           file: exercise-toolkit/markdown-templates/step-feedback/watching-for-progress.md
 
       - name: Disable current workflow and enable next one
-        if: false
         run: |
           gh workflow disable "${{github.workflow}}"
           gh workflow enable "Step 2"
