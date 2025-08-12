@@ -63,6 +63,7 @@ REPOSITORY_NAME=$(terraform output -raw repository_name)
 UPDATED_BRANCH=$(terraform output -raw updated_branch)
 ORGANIZATION_URL=$(terraform output -raw organization_url)
 WORK_ITEM_ID=$(terraform output -raw update_readme_work_item_id)
+REPOSITORY_URL=$(terraform output -raw repository_url)
 
 az repos pr create \
   --source-branch "$UPDATED_BRANCH" \
@@ -74,14 +75,15 @@ az repos pr create \
   --org "$ORGANIZATION_URL" \
   --work-items "$WORK_ITEM_ID" > /dev/null || true
 
-echo "Sample pull request creation attempted."
-
-# Get the repository URL from Terraform output
-REPOSITORY_URL=$(terraform output -raw repository_url)
+# echo "Sample pull request creation attempted."
 
 # Trigger the repository dispatch event to start the next step
 echo "Triggering next exercise step on $GITHUB_REPOSITORY repository ..."
 
 gh api repos/$GITHUB_REPOSITORY/dispatches \
     --field event_type=start-migration \
-    --field client_payload[repository_url]="$REPOSITORY_URL"
+    --field client_payload[ado_repository_url]="$REPOSITORY_URL" \
+    --field client_payload[organization_url]="$ORGANIZATION_URL" \
+    --field client_payload[project_name]="$PROJECT_NAME" \
+    --field client_payload[repository_name]="$REPOSITORY_NAME" \
+    --field client_payload[update_readme_work_item_id]="$WORK_ITEM_ID"

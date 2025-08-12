@@ -2,9 +2,14 @@
 
 🎉 **Congratulations!** You've successfully created your new Azure DevOps environment!
 
-Take a moment to explore your Azure DevOps repository :
+Take a moment to explore your Azure DevOps repository:
 
-- **ADO Repository**: [{{ ado_repository_url }}]({{ ado_repository_url }})
+| Component           | Details                 | Link                                                                                                           |
+| ------------------- | ----------------------- | -------------------------------------------------------------------------------------------------------------- |
+| 📁 **Repository**   | {{ repository_name }}   | [View Repository]({{ ado_repository_url }})                                                                    |
+| 🌿 **Branches**     | All repository branches | [View Branches]({{ organization_url }}/{{ project_name }}/\_git/{{ repository_name }}/branches)                |
+| 📋 **Work Item**    | Sample work item        | [View Work Item]({{ organization_url }}/{{ project_name }}/\_workitems/edit/{{ update_readme_work_item_id }}/) |
+| 🔄 **Pull Request** | Open pull requests      | [View Pull Requests]({{ organization_url }}/{{ project_name }}/\_git/{{ repository_name }}/pullrequests)       |
 
 This Azure DevOps environment contains sample repository, work items, a pull request and other components you will be migrating to GitHub. Feel free to browse around and familiarize yourself with the structure before we begin the migration process.
 
@@ -52,7 +57,6 @@ The GitHub token provided in this codespace has limited scopes. For migration op
    gh ado2gh --help
    ```
 
-
 <details>
 <summary>Having trouble? 🤷</summary><br/>
 
@@ -76,6 +80,7 @@ The GitHub token provided in this codespace has limited scopes. For migration op
    ```
 
    Replace `YOUR_ORG_NAME` with the GitHub organization name you want to migrate repositories to.
+
 1. Verify the role was granted successfully by checking the command output.
 
 <details>
