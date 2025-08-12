@@ -34,9 +34,9 @@ Let's start up our project environment. This lab will be ran entirely from withi
 
 ### ⌨️ Activity: Create Azure DevOps Personal Access Token
 
-Now let's configure Azure DevOps credentials so we can create a mock project for this lab.
+Now let's configure [Azure DevOps](https://dev.azure.com/) credentials so we can create a mock project for this lab.
 
-1. Navigate to your Azure DevOps organization in a new browser tab.
+1. Navigate to your [Azure DevOps](https://dev.azure.com/) organization in a new browser tab.
 1. Click on `User Settings` in top right corner, next to your profile picture.
 1. Select `Personal access tokens` from the dropdown menu. Click `New Token` to create a new personal access token.
 1. Give your token a descriptive name (e.g., `GitHub Skills Migration Exercise`).
