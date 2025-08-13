@@ -84,7 +84,7 @@ Now it's time to perform the actual migration! You'll use the `ado2gh` extension
 1. With the migration successful, add a comment to this issue to complete the exercise and learn next steps:
 
    ```md
-   Hey @professortocat, I've successfully completed the Azure DevOps to GitHub migration exercise!
+   Hey @professortocat, I've successfully completed the Migrate Azure DevOps Repository exercise!
    ```
 
 <details>
@@ -100,7 +100,7 @@ Now it's time to perform the actual migration! You'll use the `ado2gh` extension
 
 ### ⌨️ (_Optional_) Activity: Clean Up Resources
 
-After completing the migration exercise, you may want to clean up the resources that were created during this lab. This step is optional but recommended for keeping your environments tidy.
+After completing the exercise, you may want to clean up the resources that were created during this lab. This step is optional but recommended for keeping your environments tidy.
 
 <details>
 <summary>🧹 Show cleanup steps</summary>

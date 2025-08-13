@@ -1,4 +1,4 @@
-# Migrate from Azure DevOps to GitHub
+# Migrate Azure DevOps Repository
 
 Learn how to migrate repositories from Azure DevOps to GitHub using the ado2gh CLI tool.
 
@@ -6,7 +6,7 @@ Learn how to migrate repositories from Azure DevOps to GitHub using the ado2gh C
 
 - **Who is this for**: DevOps engineers, developers, and IT teams looking to migrate from Azure DevOps to GitHub
 - **What you'll learn**: How to set up migration tools, configure permissions, and migrate repositories using GitHub's official migration tools
-- **What you'll build**: A complete Azure DevOps to GitHub migration workflow with mock repository setup and the ado2gh CLI extension for migration
+- **What you'll build**: A complete Azure DevOps repository migration workflow with mock repository setup and the ado2gh CLI extension for migration
 - **Prerequisites**:
 
   - Basic knowledge of Git and version control
@@ -20,15 +20,15 @@ In this exercise, you will:
 
 1. Set up a mock Azure DevOps project.
 1. Configure GitHub migration tools and permissions
-1. Migrate the repository from Azure DevOps to GitHub
+1. Migrate the Azure DevOps repository to GitHub
 
 ### How to start this exercise
 
 Simply copy the exercise to your account, then give your favorite Octocat (Mona) **about 20 seconds** to prepare the first lesson, then **refresh the page**.
 
-<!--  Exercise template for Azure DevOps to GitHub migration -->
+<!--  Exercise template for Azure DevOps repository migration -->
 
-[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills-dev&template_name=migrate-from-ado&owner=%40me&name=skills-migrate-from-ado&description=Exercise:+Migrate+from+Azure+DevOps+to+GitHub&visibility=public)
+[![](https://img.shields.io/badge/Copy%20Exercise-%E2%86%92-1f883d?style=for-the-badge&logo=github&labelColor=197935)](https://github.com/new?template_owner=skills-dev&template_name=migrate-ado-repository&owner=%40me&name=skills-migrate-ado-repository&description=Exercise:+Migrate+Azure+DevOps+Repository+to+GitHub&visibility=public)
 
 <details>
 <summary>Having trouble? 🤷</summary><br/>

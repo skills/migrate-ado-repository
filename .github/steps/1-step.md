@@ -1,6 +1,6 @@
 ## Step 1: Setting up your Azure DevOps Environment
 
-Welcome to the Azure DevOps to GitHub migration exercise! In this hands-on workshop, you'll learn how to migrate repositories from Azure DevOps to GitHub using GitHub's official migration tools.
+Welcome to the Migrate Azure DevOps Repository exercise! In this hands-on workshop, you'll learn how to migrate repositories from Azure DevOps to GitHub using GitHub's official migration tools.
 
 ```mermaid
 flowchart LR
