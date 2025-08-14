@@ -65,7 +65,8 @@ ORGANIZATION_URL=$(terraform output -raw organization_url)
 WORK_ITEM_ID=$(terraform output -raw update_readme_work_item_id)
 REPOSITORY_URL=$(terraform output -raw repository_url)
 
-az repos pr create \
+# Create the pull request and capture the PR ID
+PR_OUTPUT=$(az repos pr create \
   --source-branch "$UPDATED_BRANCH" \
   --target-branch "main" \
   --title "Update README documentation" \
@@ -73,9 +74,51 @@ az repos pr create \
   --repository "$REPOSITORY_NAME" \
   --project "$PROJECT_NAME" \
   --org "$ORGANIZATION_URL" \
-  --work-items "$WORK_ITEM_ID" > /dev/null || true
+  --work-items "$WORK_ITEM_ID" 2>/dev/null || echo '{"pullRequestId": null}')
 
-echo "Sample pull request creation attempted."
+# Extract PR ID from the output
+PR_ID=$(echo "$PR_OUTPUT" | jq -r '.pullRequestId // empty')
+
+if [ -n "$PR_ID" ] && [ "$PR_ID" != "null" ]; then
+    echo "Pull request created successfully with ID: $PR_ID"
+        
+    # Add a comment to the pull request using the REST API
+    echo "Adding comment to pull request..."
+    
+    # Create a temporary file with the comment payload
+    TEMP_FILE=$(mktemp)
+    cat > "$TEMP_FILE" <<EOF
+{
+  "comments": [
+    {
+      "parentCommentId": 0,
+      "content": "🚀 **Bootstrap Complete!**\\n\\nThis PR was created automatically during the Azure DevOps migration exercise.\\n\\n**Details:**\\n- Work Item: #$WORK_ITEM_ID\\n- Repository: $REPOSITORY_URL\\n- Branch: $UPDATED_BRANCH → main\\n\\nPlease review and merge when ready! 🎉",
+      "commentType": "text"
+    }
+  ],
+  "status": "active"
+}
+EOF
+    
+    az devops invoke \
+      --area git \
+      --resource pullRequestThreads \
+      --organization "$ORGANIZATION_URL" \
+      --route-parameters \
+        project="$PROJECT_NAME" \
+        repositoryId="$REPOSITORY_NAME" \
+        pullRequestId="$PR_ID" \
+      --http-method POST \
+      --in-file "$TEMP_FILE" \
+      --api-version "7.0" > /dev/null || true
+    
+    # Clean up the temporary file
+    rm -f "$TEMP_FILE"
+    
+    echo "Comment added to pull request."
+else
+    echo "Pull request creation failed or PR ID could not be retrieved."
+fi
 
 # Trigger the repository dispatch event to start the next step
 echo "Triggering next exercise step on $GITHUB_REPOSITORY repository ..."
