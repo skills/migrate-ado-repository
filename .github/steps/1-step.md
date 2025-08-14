@@ -40,7 +40,7 @@ Now let's configure [Azure DevOps](https://dev.azure.com/) credentials so we can
 1. Click on `User Settings` in top right corner, next to your profile picture.
 1. Select `Personal access tokens` from the dropdown menu. Click `New Token` to create a new personal access token.
 1. Give your token a descriptive name (e.g., `GitHub Skills Migration Exercise`) and set the expiration to a shorter duration (e.g., 1 day).
-1. Under `Scopes`, select `Custom defined` and choose the following scopes:
+1. Under `Scopes`, select `Custom defined` and choose the following scopes ([reference](https://docs.github.com/migrations/using-github-enterprise-importer/migrating-from-azure-devops-to-github-enterprise-cloud/managing-access-for-a-migration-from-azure-devops#personal-access-tokens-for-azure-devops)):
    - **Project and Team**: Read, write & manage (to create a project)
    - **Code**: Read, write & manage (to create repositories, branches, and files)
    - **Work Items**: Read & write (to create work items)

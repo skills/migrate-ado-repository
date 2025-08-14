@@ -17,7 +17,7 @@ Now let's set up the GitHub migration tools to prepare for migrating this Azure 
 
 ### ⌨️ Activity: Setup GitHub Personal Access Token
 
-The GitHub token provided in this codespace has limited scopes. For migration operations and extension installation, we need a token with broader permissions including `admin:org` access.
+The GitHub token provided in this codespace has limited scopes. For migration operations and extension installation, we need a token with broader permissions including `admin:org` access. Exact scopes required can be found in the [GitHub Docs](https://docs.github.com/migrations/using-github-enterprise-importer/migrating-from-azure-devops-to-github-enterprise-cloud/managing-access-for-a-migration-from-azure-devops#personal-access-tokens-for-github).
 
 > [!IMPORTANT]
 > You must be an **owner** of a GitHub organization to perform migrations. If you don't have your own organization, you can [create a personal organization for free](https://docs.github.com/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch).

@@ -9,7 +9,7 @@ Based on your configuration, you'll be migrating:
 
 ### Data that is Migrated
 
-GitHub Enterprise Importer supports migrating the following repository data from Azure DevOps to GitHub Enterprise Cloud:
+GitHub Enterprise Importer supports migrating the following repository data from Azure DevOps to GitHub Enterprise Cloud (see [GitHub Docs](https://docs.github.com/migrations/using-github-enterprise-importer/migrating-from-azure-devops-to-github-enterprise-cloud/about-migrations-from-azure-devops-to-github-enterprise-cloud#data-that-is-migrated)):
 
 - **Git source** (including commit history)
 - **Pull requests**
@@ -79,7 +79,7 @@ Now it's time to perform the actual migration! You'll use the `ado2gh` extension
 
    > 📝 **Note**: Branch Protection Rules may not be visible on free GitHub organizations.
 
-1. Check the migration log issue that was automatically created in the migrated repository for any warnings or errors.
+1. Check the [migration log issue](https://github.com/{{ github_org }}/{{ target_github_repo_name }}/issues/2) that was automatically created in the migrated repository for any warnings or errors.
 
 1. With the migration successful, add a comment to this issue to complete the exercise and learn next steps:
 
