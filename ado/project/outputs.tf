@@ -1,7 +1,7 @@
 
 output "repository_url" {
   description = "The URL of the created repository"
-  value       = azuredevops_git_repository.repo.remote_url
+  value       = azuredevops_git_repository.repo.web_url
 }
 
 output "project_name" {
