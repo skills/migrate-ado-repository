@@ -20,7 +20,7 @@ Now let's set up the GitHub migration tools to prepare for migrating this Azure 
 The GitHub token provided in this codespace has limited scopes. For migration operations and extension installation, we need a token with broader permissions including `admin:org` access.
 
 > [!IMPORTANT]
-> You must be an **owner** of a GitHub organization to perform migrations. If you don't have your own organization, you can [create a personal organization for free](https://docs.github.com/en/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch).
+> You must be an **owner** of a GitHub organization to perform migrations. If you don't have your own organization, you can [create a personal organization for free](https://docs.github.com/organizations/collaborating-with-groups-in-organizations/creating-a-new-organization-from-scratch).
 
 1. First, unset the existing token and authenticate with GitHub CLI using the required scopes for migration and extension installation:
 
