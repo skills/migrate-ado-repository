@@ -14,7 +14,7 @@ flowchart LR
     style D fill:#bc4c00,color:#ffffff
 ```
 
-To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. In this exercise, you'll learn to use [GitHub Enterprise Importer](https://docs.github.com/en/migrations/using-github-enterprise-importer/understanding-github-enterprise-importer/about-github-enterprise-importer), GitHub's official migration tool that provides high-fidelity migrations while preserving Git history and metadata. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
+To practice migrating from Azure DevOps to GitHub, you need a realistic source environment. In this exercise, you'll learn to use [GitHub Enterprise Importer](https://docs.github.com/migrations/using-github-enterprise-importer/understanding-github-enterprise-importer/about-github-enterprise-importer), GitHub's official migration tool that provides high-fidelity migrations while preserving Git history and metadata. We will ask you to use a Personal Access Token to authenticate with Azure DevOps and the provided script that will automatically build a complete project environment.
 
 This approach simulates real-world migration scenarios where you have existing Azure DevOps projects with:
 
@@ -35,6 +35,9 @@ Let's start up our project environment. This lab will be ran entirely from withi
 ### ⌨️ Activity: Create Azure DevOps Personal Access Token
 
 Now let's configure [Azure DevOps](https://dev.azure.com/) credentials so we can create a mock project for this lab.
+
+> [!NOTE]
+> If you do not have an Azure DevOps account you can sign up for free by following this [guide](https://learn.microsoft.com/azure/devops/user-guide/sign-up-invite-teammates?view=azure-devops&tabs=microsoft-account). Once you have an account you can create a new organization using these [instructions](https://learn.microsoft.com/azure/devops/organizations/accounts/create-organization?view=azure-devops).
 
 1. Navigate to your [Azure DevOps](https://dev.azure.com/) organization in a new browser tab.
 1. Click on `User Settings` in top right corner, next to your profile picture.
