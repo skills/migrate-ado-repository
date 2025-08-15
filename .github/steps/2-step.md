@@ -86,7 +86,7 @@ The GitHub token provided in this codespace has limited scopes. For migration op
 1. Verify the role was granted successfully by checking the command output. You should see a message like:
 
    ```bash
-   [2025-08-14 15:22:55] [INFO] Migrator role successfully set for the USER "{{ login }}"
+   [yyyy-MM-dd HH:mm:ss] [INFO] Migrator role successfully set for the USER "{{ login }}"
    ```
 
 <details>
