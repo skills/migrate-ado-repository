@@ -30,9 +30,3 @@ Here's a recap of your accomplishments:
 - 📊 [Post-migration tasks](https://docs.github.com/migrations/using-github-enterprise-importer/completing-your-migration-with-github-enterprise-importer) - Complete your migration journey
 
 ---
-
-> [!NOTE]
->
-> This exercise covers the basics, but real-world migrations can be challenging for large organizations.
->
-> Consider leveraging GitHub's [Partner Network](https://partner.github.com/) for professional migration expertise.
