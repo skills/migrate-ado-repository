@@ -24,7 +24,7 @@ This approach simulates real-world migration scenarios where you have existing A
 
 ### ⌨️ Activity: Login to Codespace
 
-Let's start up our project environment. This lab will be ran entirely from within a GitHub Codespace.
+Let's start up our project environment. This lab **must** be ran from within a GitHub Codespace.
 
 1. Use the below button to open the **Create Codespace** page in a new tab. Use the default configuration.
 
