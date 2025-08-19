@@ -5,6 +5,22 @@
 
 set -e  # Exit on any error
 
+# Check if running in GitHub Codespaces
+if [ -z "$CODESPACES" ] && [ -z "$CODESPACE_NAME" ]; then
+    echo "❌ Error: This script must be run in a GitHub Codespace."
+    echo ""
+    echo "This exercise requires GitHub Codespaces to provide the necessary environment"
+    echo "and pre-configured tools for Azure DevOps migration."
+    echo ""
+    echo "Please:"
+    echo "1. Open this repository in GitHub Codespaces"
+    echo "2. Run this script again from the Codespace terminal"
+    echo ""
+    exit 1
+fi
+
+echo "✅ Running in GitHub Codespace: $CODESPACE_NAME"
+
 # Initialize variables
 ADO_PAT=""
 
