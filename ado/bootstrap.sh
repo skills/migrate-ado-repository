@@ -89,7 +89,7 @@ EXISTING_PR=$(az repos pr list \
   --output tsv 2>/dev/null || echo "")
   
 
-if [ -n "$EXISTING_PR" ] && [ "$EXISTING_PR" != "null" ] && [ "$EXISTING_PR" != "" ]; then
+if [ -n "$EXISTING_PR" ] && [ "$EXISTING_PR" != "null" ]; then
     echo "✅ Pull request already exists with ID: $EXISTING_PR"
     echo "⏭️  Skipping PR and comment creation."
     PR_ID="$EXISTING_PR"
