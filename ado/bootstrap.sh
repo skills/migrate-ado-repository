@@ -19,7 +19,6 @@ if [ -z "$CODESPACES" ] && [ -z "$CODESPACE_NAME" ]; then
     exit 1
 fi
 
-echo "✅ Running in GitHub Codespace: $CODESPACE_NAME"
 
 # Initialize variables
 ADO_PAT=""
@@ -45,7 +44,7 @@ while [[ $# -gt 0 ]]; do
             usage
             ;;
         *)
-            echo "Error: Unknown option $1"
+            echo "❌ Error: Unknown option $1"
             usage
             ;;
     esac
@@ -53,24 +52,22 @@ done
 
 # Check if required parameters are provided
 if [ -z "$ADO_PAT" ]; then
-    echo "Error: Azure DevOps Personal Access Token (--ado-token) is required"
+    echo "❌ Error: Azure DevOps Personal Access Token (--ado-token) is required"
     usage
 fi
 
 # Change to the project directory where terraform files are located
 cd "$(dirname "$0")/project"
 
-echo "Initializing Terraform..."
+echo "🔄 Initializing Terraform..."
 terraform init
 
-echo "Applying Terraform configuration..."
+echo "🔄 Applying Terraform configuration..."
 terraform apply -var="ado_token=$ADO_PAT" -auto-approve
 
-echo "Bootstrap completed successfully!"
-echo "Azure DevOps project has been created and configured."
+echo "✅ Azure DevOps project has been created and configured."
 
-# Create a sample pull request in the Azure DevOps repository
-echo "Creating sample pull request..."
+echo "🔍 Checking for existing pull request..."
 export AZURE_DEVOPS_EXT_PAT="$ADO_PAT"
 
 # Get values from Terraform outputs
@@ -81,29 +78,46 @@ ORGANIZATION_URL=$(terraform output -raw organization_url)
 WORK_ITEM_ID=$(terraform output -raw update_readme_work_item_id)
 REPOSITORY_URL=$(terraform output -raw repository_url)
 
-# Create the pull request and capture the PR ID
-PR_OUTPUT=$(az repos pr create \
+# Check if pull request already exists (if script was ran multiple times)
+EXISTING_PR=$(az repos pr list \
   --source-branch "$UPDATED_BRANCH" \
   --target-branch "main" \
-  --title "Update README documentation" \
-  --description "Sample pull request created during bootstrap for migration exercise" \
   --repository "$REPOSITORY_NAME" \
   --project "$PROJECT_NAME" \
   --org "$ORGANIZATION_URL" \
-  --work-items "$WORK_ITEM_ID" 2>/dev/null || echo '{"pullRequestId": null}')
+  --query "[0].pullRequestId" \
+  --output tsv 2>/dev/null || echo "")
+  
 
-# Extract PR ID from the output
-PR_ID=$(echo "$PR_OUTPUT" | jq -r '.pullRequestId // empty')
+if [ -n "$EXISTING_PR" ] && [ "$EXISTING_PR" != "null" ] && [ "$EXISTING_PR" != "" ]; then
+    echo "✅ Pull request already exists with ID: $EXISTING_PR"
+    echo "⏭️  Skipping PR and comment creation."
+    PR_ID="$EXISTING_PR"
+else
+    # Create a sample pull request in the Azure DevOps repository
+    echo "🔄 Creating new pull request..."
+    PR_OUTPUT=$(az repos pr create \
+      --source-branch "$UPDATED_BRANCH" \
+      --target-branch "main" \
+      --title "Update README documentation" \
+      --description "Sample pull request created during bootstrap for migration exercise" \
+      --repository "$REPOSITORY_NAME" \
+      --project "$PROJECT_NAME" \
+      --org "$ORGANIZATION_URL" \
+      --work-items "$WORK_ITEM_ID" 2>/dev/null || echo '{"pullRequestId": null}')
 
-if [ -n "$PR_ID" ] && [ "$PR_ID" != "null" ]; then
-    echo "Pull request created successfully with ID: $PR_ID"
+    # Extract PR ID from the output
+    PR_ID=$(echo "$PR_OUTPUT" | jq -r '.pullRequestId // empty')
+
+    if [ -n "$PR_ID" ] && [ "$PR_ID" != "null" ]; then
+        echo "✅ Pull request created successfully with ID: $PR_ID"
         
-    # Add a comment to the pull request using the REST API
-    echo "Adding comment to pull request..."
-    
-    # Create a temporary file with the comment payload
-    TEMP_FILE=$(mktemp)
-    cat > "$TEMP_FILE" <<EOF
+        # Add a comment to the pull request using the REST API
+        echo "🔄 Adding comment to pull request..."
+        
+        # Create a temporary file with the comment payload
+        TEMP_FILE=$(mktemp)
+        cat > "$TEMP_FILE" <<EOF
 {
   "comments": [
     {
@@ -115,29 +129,31 @@ if [ -n "$PR_ID" ] && [ "$PR_ID" != "null" ]; then
   "status": "active"
 }
 EOF
-    
-    az devops invoke \
-      --area git \
-      --resource pullRequestThreads \
-      --organization "$ORGANIZATION_URL" \
-      --route-parameters \
-        project="$PROJECT_NAME" \
-        repositoryId="$REPOSITORY_NAME" \
-        pullRequestId="$PR_ID" \
-      --http-method POST \
-      --in-file "$TEMP_FILE" \
-      --api-version "7.0" > /dev/null || true
-    
-    # Clean up the temporary file
-    rm -f "$TEMP_FILE"
-    
-    echo "Comment added to pull request."
-else
-    echo "Pull request creation failed or PR ID could not be retrieved."
+        
+        az devops invoke \
+          --area git \
+          --resource pullRequestThreads \
+          --organization "$ORGANIZATION_URL" \
+          --route-parameters \
+            project="$PROJECT_NAME" \
+            repositoryId="$REPOSITORY_NAME" \
+            pullRequestId="$PR_ID" \
+          --http-method POST \
+          --in-file "$TEMP_FILE" \
+          --api-version "7.0" > /dev/null || true
+        
+        # Clean up the temporary file
+        rm -f "$TEMP_FILE"
+        
+        echo "✅ Comment added to pull request."
+    else
+        echo "❌ Pull request creation failed or PR ID could not be retrieved."
+        exit 1
+    fi
 fi
 
 # Trigger the repository dispatch event to start the next step
-echo "Triggering next exercise step on $GITHUB_REPOSITORY repository ..."
+echo "🚀 Triggering next exercise step on $GITHUB_REPOSITORY repository ..."
 
 gh api repos/$GITHUB_REPOSITORY/dispatches \
     --field event_type=start-migration \
