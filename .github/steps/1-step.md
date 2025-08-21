@@ -44,11 +44,23 @@ Now let's configure [Azure DevOps](https://dev.azure.com/) credentials so we can
 1. Select `Personal access tokens` from the dropdown menu. Click `New Token` to create a new personal access token.
 1. Give your token a descriptive name (e.g., `GitHub Skills Migration Exercise`) and set the expiration to a shorter duration (e.g., 1 day).
 1. Under `Scopes`, select `Custom defined` and choose the following scopes:
+
    - **Project and Team**: Read, write & manage (to create a project)
    - **Code**: Read, write & manage (to create repositories, branches, and files)
    - **Work Items**: Read & write (to create work items)
    - **Build**: Read & execute (to create and manage pipelines)
    - **Identity**: Read (required for migration tools)
+
+    
+    <details>
+    <summary>Can't see some scopes? 👀 </summary><br/>
+    
+    Click **Show all scopes** at the bottom of this view
+   
+    <img width="600" alt="Show all scopes link" src="https://github.com/user-attachments/assets/0752c646-9402-400e-9168-c55d0de219a4" />
+
+    </details>
+    
 1. Click `Create` and store the token securely as you won't be able to see it again.
 
 ### ⌨️ Activity: Create Mock Azure Project
