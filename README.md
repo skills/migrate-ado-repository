@@ -21,6 +21,7 @@ In this exercise, you will:
 1. Set up a mock Azure DevOps project.
 1. Configure GitHub migration tools and permissions
 1. Migrate the Azure DevOps repository to GitHub
+1. Integrate a GitHub repository with Azure DevOps Boards and Pipelines
 
 ### How to start this exercise
 

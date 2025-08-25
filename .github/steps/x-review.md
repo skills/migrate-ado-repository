@@ -10,6 +10,7 @@ Here's a recap of your accomplishments:
 - ✅ **Configured GitHub migration tools** - Installed and configured the ado2gh CLI extension
 - ✅ **Granted migrator role** - Configured the GitHub migrator role for secure repository migrations
 - ✅ **Performed repository migration** - Successfully migrated a repository from Azure DevOps to GitHub using ado2gh
+- ✅ **Integrated GitHub and Azure DevOps** - Successfully integrated GitHub and Azure DevOps for a hybrid workflow
 
 ### What's next?
 
