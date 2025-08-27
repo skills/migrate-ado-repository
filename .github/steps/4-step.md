@@ -92,7 +92,13 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    1. Choose the base branch: `main`
    1. Click **Create**
 1. A new branch is created in your GitHub repository. You can navigate to it directly from the link in the work item.
-<!-- TODO Add screenshot in a details dropdown -->
+
+   <details>
+   <summary>📸 Show screenshot</summary><br/>
+
+   <!-- Add screenshot showing the newly created branch link in the Azure DevOps work item -->
+
+   </details>
 
 #### 📝 Committing to your Branch
 
@@ -104,31 +110,48 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    ```
 
 1. If you return to the Azure DevOps work item, you'll see the commit is now linked in the Development section.
-<!-- TODO Add screenshot in a details dropdown -->
 
+   <details>
+   <summary>📸 Show screenshot</summary><br/>
+
+   <!-- Add screenshot showing the commit appearing in the Development section of the Azure DevOps work item -->
+
+   </details>
 
 > [!TIP]
 > You can also manually link commits to work items after the fact inside the ADO work item by selecting `Add Link` under the development section and selecting a GitHub commit.
 
 #### 🔄 Creating a Pull Request
 
-1. Inside your GitHub repository click on the **Pull requests** tab.
-1. Click the **Compare & pull request** button in the banner at the top of the page.
-1. Give your pull request a clear title.
-1. Provide a description of the changes you made. You can use the `AB#<workitem-id>` syntax to link the pull request to the Azure DevOps work item.
-1. Click **Create pull request**.
+1. Inside your GitHub repository click on the **Pull requests** tab click the **Compare & pull request** button.
+1. Include `AB#<workitem-id>` in your pull request description to automatically link it to the Azure DevOps work item.
+1. Click **Create pull request** and notice how the `AB#<workitem-id>` reference in the description automatically converts to a hyperlink.
+1. If you return to the Azure DevOps work item, you will see the pull request is now linked in the Development section.
 
-#### 🚀 Reviewing and Merging the Pull Request
+   <details>
+   <summary>📸 Show screenshot</summary><br/>
 
-1. Notice any AB#<workitem-id> references in the pull request description will automatically convert to hyperlinks.
-1. If you return to the Azure DevOps work item, you'll see the pull request is now linked in the Development section. You can also manually link commits to work items after the fact inside the ADO work item by selecting Add Link under the development section and selecting a GitHub pull request.
+   <!-- Add screenshot showing the pull request appearing in the Development section of the Azure DevOps work item -->
+
+   </details>
+
 1. Notice that an Azure Pipelines build is triggered automatically on the PR. You can view the build status directly in the GitHub PR or click the build to be directed to the Azure Pipelines run.
-1. Merge the Pull Request once the build has passed. The PR will also require approval from at least one reviewer but as a repository admin you can bypass this functionality if needed.
-1. After the PR is merged, return to the Azure DevOps work item and observe the work item has been marked as `Done``.
+
+   <details>
+   <summary>📸 Show screenshot</summary><br/>
+
+   <!-- Add screenshot showing the Azure Pipeline build status in the GitHub pull request -->
+
+   </details>
+1. Merge the Pull Request once the build has completed.
+
+   > 🪧 **Note:** The PR will also require approval from at least one reviewer but as a repository admin you can bypass this functionality.
+
+1. After the PR is merged, return to the Azure DevOps work item and observe the work item has been marked as `Done`.
 
 #### ✅ Complete the Exercise
 
-1. With the integration successfully tested, add a comment to this issue to complete the exercise and get a review:
+With the integration successfully tested, add a comment to this issue to complete the exercise and get a review!
 
    ```md
    Hey @professortocat, I've successfully integrated GitHub and Azure DevOps!
