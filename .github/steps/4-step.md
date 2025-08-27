@@ -21,11 +21,13 @@ First, let's set up the integration between your GitHub repository and Azure Dev
    - Go to the [Azure Boards GitHub App page](https://github.com/marketplace/azure-boards)
    - Select your GitHub organization `{{ github_org }}` under Account
    - Click **Install**
-   - Select either `All repositories` or `Only select repositories`. If you choose the latter, you'll need to specify the `{{ github_org }}\{{ target_github_repo_name }}` GitHub repository.
+   - Select either `All repositories` or `Only select repositories`. If you choose the latter, you'll need to specify the `{{ github_org }}/{{ target_github_repo_name }}` GitHub repository.
    - Click **Install & Authorize**
 
 > [!NOTE]
-> If the Azure Boards app is already installed you can skip the installation step but will need to add your repository to the list of approved repositories within the app configuration page. When you click save you will be redirected to Azure DevOps to finish the connection process.
+> If the Azure Boards app is already installed you will instead need to add your newly migrated repository to the list of approved repositories.
+>
+> You should do that within the [GitHub Apps organization settings](https://github.com/organizations/{{ github_org }}/settings/installations) of your `{{ github_org }}` GitHub organization.
 
 2. You'll be redirected to Azure DevOps to complete the connection:
    - _(If required)_ Authenticate with the appropriate account
@@ -54,7 +56,9 @@ Now let's integrate your GitHub repository with Azure Pipelines for continuous i
    - Click **Install**
 
 > [!NOTE]
-> If the Azure Pipelines app is already installed you can skip the installation step but will need to add your repository to the list of approved repositories within the app configuration page. When you click save you will be redirected to Azure DevOps to finish the connection process.
+> If the Azure Pipelines app is already installed you will instead need to add your newly migrated repository to the list of approved repositories.
+>
+> You should do that within the [GitHub Apps organization settings](https://github.com/organizations/{{ github_org }}/settings/installations) of your `{{ github_org }}` GitHub organization.
 
 2. You'll be redirected to Azure DevOps to complete the connection:
    - _(If required)_ Authenticate with the appropriate account
@@ -69,7 +73,7 @@ Now let's integrate your GitHub repository with Azure Pipelines for continuous i
 
 - Make sure you have admin permissions on both the GitHub repository and Azure DevOps project
 - If the Azure Pipelines app isn't showing up, check that it's properly installed in your organization's settings
-- If you are using a free Azure DevOps organization, ensure you have enough parallel jobs available for your builds. If your build fails due to "No hosted parallelism", you can still proceed with the rest of the exercise.
+- If you are using a free Azure DevOps organization, ensure you have enough parallel jobs available for your builds. If your build fails due to `No hosted parallelism`, you can still proceed with the rest of the exercise.
 
 </details>
 
