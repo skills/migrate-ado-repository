@@ -96,7 +96,7 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    <details>
    <summary>📸 Show screenshot</summary><br/>
 
-   <!-- Add screenshot showing the newly created branch link in the Azure DevOps work item -->
+   <img width="312" height="166" alt="SCR-20250827-nbnh" src="https://github.com/user-attachments/assets/4fcee008-1db1-43e8-b920-c0d523ddca07" />
 
    </details>
 
@@ -114,7 +114,7 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    <details>
    <summary>📸 Show screenshot</summary><br/>
 
-   <!-- Add screenshot showing the commit appearing in the Development section of the Azure DevOps work item -->
+   <img width="316" height="207" alt="SCR-20250827-ndgy" src="https://github.com/user-attachments/assets/268fa91b-81f2-4ff2-a18b-dfd6b6d0623e" />
 
    </details>
 
@@ -131,18 +131,15 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    <details>
    <summary>📸 Show screenshot</summary><br/>
 
-   <!-- Add screenshot showing the pull request appearing in the Development section of the Azure DevOps work item -->
+   <img width="337" height="229" alt="SCR-20250827-niut" src="https://github.com/user-attachments/assets/6b7d3e85-5435-4f44-97a9-871c66dd8fbd" />
+
 
    </details>
 
 1. Notice that an Azure Pipelines build is triggered automatically on the PR. You can view the build status directly in the GitHub PR or click the build to be directed to the Azure Pipelines run.
 
-   <details>
-   <summary>📸 Show screenshot</summary><br/>
-
    <!-- Add screenshot showing the Azure Pipeline build status in the GitHub pull request -->
-
-   </details>
+   
 1. Merge the Pull Request once the build has completed.
 
    > 🪧 **Note:** The PR will also require approval from at least one reviewer but as a repository admin you can bypass this functionality.
