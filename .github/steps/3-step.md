@@ -84,7 +84,7 @@ Now it's time to perform the actual migration! You'll use the `ado2gh` extension
 1. With the migration successful, add a comment to this issue to complete the exercise and learn next steps:
 
    ```md
-   Hey @professortocat, I've successfully completed the Migrate Azure DevOps Repository exercise!
+   Hey @professortocat, I've successfully migrated my repository from Azure DevOps to GitHub!
    ```
 
 <details>
@@ -95,41 +95,5 @@ Now it's time to perform the actual migration! You'll use the `ado2gh` extension
 - If migration fails, check the error message and migration logs for details
 - You can cancel a migration using `gh ado2gh abort-migration --migration-id MIGRATION-ID`
 - Repository names must be unique in the target GitHub organization: `{{ github_org }}`
-
-</details>
-
-### ⌨️ (_Optional_) Activity: Clean Up Resources
-
-After completing the exercise, you may want to clean up the resources that were created during this lab. This step is optional but recommended for keeping your environments tidy.
-
-<details>
-<summary>🧹 Show cleanup steps</summary>
-
-1. **Clean up Azure DevOps project**:
-
-   ```bash
-   cd ado/project
-   terraform apply -destroy -var="ado_token=$ADO_PAT" 
-   ```
-
-   You will be asked to confirm by writing `yes`.
-
-1. **Delete the migrated GitHub repository**:
-
-   - Navigate to the migrated repository on GitHub: https://github.com/{{ github_org }}/{{ target_github_repo_name }}
-   - Go to repository `Settings` tab
-   - Scroll down to the `Danger Zone` and click `Delete this repository`
-   - Follow the prompts to confirm deletion
-
-1. **Revoke GitHub migrator role**:
-
-   ```bash
-   gh ado2gh revoke-migrator-role --actor {{ login }} --actor-type USER --github-org {{ github_org }}
-   ```
-
-1. **Delete Azure DevOps Personal Access Token**:
-
-   - Navigate to your Azure DevOps Organization
-   - Find the token you created for this exercise and delete it
 
 </details>

@@ -1,4 +1,4 @@
-name: Step 3 # Last step of the exercise
+name: Step 4 # Last step of the exercise
 
 on:
   issue_comment:
@@ -30,6 +30,7 @@ jobs:
     name: Find Exercise Issue
     uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.7.0
 
+    
   post_review_content:
     name: Post review content
     needs: [find_exercise, check_keywords]
