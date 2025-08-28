@@ -106,7 +106,13 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
 1. In your commit message, include `AB#<workitem-id>` to automatically link the commit to the work item.
 
    ```txt
-   Update README with integration notes AB#1234
+   Update README with integration notes AB#<workitem-id>
+   ```
+
+   If you include `fixes` keyword, the work item will also be marked as `Done` when the commit gets merged to `main` branch.
+
+   ```txt
+   Update README with integration notes - fixes AB#<workitem-id>
    ```
 
 1. If you return to the Azure DevOps work item, you'll see the commit is now linked in the Development section.
@@ -124,7 +130,15 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
 #### 🔄 Creating a Pull Request
 
 1. Inside your GitHub repository click on the **Pull requests** tab click the **Compare & pull request** button.
-1. Include `AB#<workitem-id>` in your pull request description to automatically link it to the Azure DevOps work item.
+
+1. In your pull request description, include the Azure DevOps work item reference `AB#<workitem-id>` to automatically link the PR to the work item. Prefix it with the `Fixes` keyword to mark the work item as `Done` when the PR gets merged.
+
+   ```txt
+   This PR updates the README with integration notes
+
+   Fixes AB#<workitem-id>
+   ```
+
 1. Click **Create pull request** and notice how the `AB#<workitem-id>` reference in the description automatically converts to a hyperlink.
 1. If you return to the Azure DevOps work item, you will see the pull request is now linked in the Development section.
 
@@ -132,7 +146,6 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    <summary>📸 Show screenshot</summary><br/>
 
    <img width="337" height="229" alt="SCR-20250827-niut" src="https://github.com/user-attachments/assets/6b7d3e85-5435-4f44-97a9-871c66dd8fbd" />
-
 
    </details>
 
@@ -143,15 +156,24 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
 
    <img width="680" height="302" alt="image" src="https://github.com/user-attachments/assets/9307df37-1578-409b-92d3-14e60e1f12df" />
 
-
    </details>
 
-   
 1. Merge the Pull Request once the build has completed.
 
    > 🪧 **Note:** The PR will also require approval from at least one reviewer but as a repository admin you can bypass this functionality.
 
 1. After the PR is merged, return to the Azure DevOps work item and observe the work item has been marked as `Done`.
+
+
+<details>
+<summary>Having trouble? 🤷</summary><br/>
+
+- For the work item did to get marked as `Done` you need to use the `fixes AB#<work-item>` syntax in either (see [docs](https://learn.microsoft.com/azure/devops/boards/github/link-to-from-github?view=azure-devops#use-ab-to-link-from-github-to-azure-boards-work-items))
+  - Commit message pushed to `main` branch
+  - PR description merged to `main` branch
+
+</details>
+
 
 #### ✅ Complete the Exercise
 
