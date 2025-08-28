@@ -21,11 +21,13 @@ First, let's set up the integration between your GitHub repository and Azure Dev
    - Go to the [Azure Boards GitHub App page](https://github.com/marketplace/azure-boards)
    - Select your GitHub organization `{{ github_org }}` under Account
    - Click **Install**
-   - Select either `All repositories` or `Only select repositories`. If you choose the latter, you'll need to specify the `{{ github_org }}\{{ target_github_repo_name }}` GitHub repository.
+   - Select either `All repositories` or `Only select repositories`. If you choose the latter, you'll need to specify the `{{ github_org }}/{{ target_github_repo_name }}` GitHub repository.
    - Click **Install & Authorize**
 
 > [!NOTE]
-> If the Azure Boards app is already installed you can skip the installation step but will need to add your repository to the list of approved repositories within the app configuration page. When you click save you will be redirected to Azure DevOps to finish the connection process.
+> If the Azure Boards app is already installed you will instead need to add your newly migrated repository to the list of approved repositories.
+>
+> You should do that within the [GitHub Apps organization settings](https://github.com/organizations/{{ github_org }}/settings/installations) of your `{{ github_org }}` GitHub organization.
 
 2. You'll be redirected to Azure DevOps to complete the connection:
    - _(If required)_ Authenticate with the appropriate account
@@ -54,7 +56,9 @@ Now let's integrate your GitHub repository with Azure Pipelines for continuous i
    - Click **Install**
 
 > [!NOTE]
-> If the Azure Pipelines app is already installed you can skip the installation step but will need to add your repository to the list of approved repositories within the app configuration page. When you click save you will be redirected to Azure DevOps to finish the connection process.
+> If the Azure Pipelines app is already installed you will instead need to add your newly migrated repository to the list of approved repositories.
+>
+> You should do that within the [GitHub Apps organization settings](https://github.com/organizations/{{ github_org }}/settings/installations) of your `{{ github_org }}` GitHub organization.
 
 2. You'll be redirected to Azure DevOps to complete the connection:
    - _(If required)_ Authenticate with the appropriate account
@@ -69,7 +73,7 @@ Now let's integrate your GitHub repository with Azure Pipelines for continuous i
 
 - Make sure you have admin permissions on both the GitHub repository and Azure DevOps project
 - If the Azure Pipelines app isn't showing up, check that it's properly installed in your organization's settings
-- If you are using a free Azure DevOps organization, ensure you have enough parallel jobs available for your builds. If your build fails due to "No hosted parallelism", you can still proceed with the rest of the exercise.
+- If you are using a free Azure DevOps organization, ensure you have enough parallel jobs available for your builds. If your build fails due to `No hosted parallelism`, you can still proceed with the rest of the exercise.
 
 </details>
 
@@ -77,40 +81,74 @@ Now let's integrate your GitHub repository with Azure Pipelines for continuous i
 
 Now that we have both Azure DevOps Pipelines and Azure Boards integrated with GitHub, let's demonstrate the full workflow and see how the integrations work together.
 
-1. **Creating a Branch from a Work Item**:
+#### 🌿 Creating a Branch from a Work Item
 
-   - Navigate to your work item in Azure DevOps: [{{ ado_url }}/{{ ado_project_name }}/_workitems]({{ ado_url }}/{{ ado_project_name }}/\_workitems)
-   - Create a new work item, noting the work item ID
-   - Under the "Development" section on the right side of the page, Click the **Create a branch** link. Make sure to select a GitHub link rather than an Azure Repos link.
-   - Give your branch an informative name, such as `feature/ado-<workitem-id>`
-   - Select the GitHub repository from the dropdown: `{{ github_org }}/{{ target_github_repo_name }}`
-   - Choose the base branch: `main`
-   - Click **Create**
-   - A new branch is created in your GitHub repository. You can navigate to it directly from the link in the work item.
+1. Navigate to your work item in Azure DevOps: [{{ ado_url }}/{{ ado_project_name }}/_workitems]({{ ado_url }}/{{ ado_project_name }}/\_workitems)
+1. Create a new work item and make note of the generated work item ID
+1. Under the **Development** section on the right side of the page, Click the **Create a branch** link.
+   > ❕ **Important:** Make sure to select a GitHub link rather than an Azure Repos link.
+   1. Give your branch an informative name, such as `feature/ado-<workitem-id>`
+   1. Select the GitHub repository from the dropdown: `{{ github_org }}/{{ target_github_repo_name }}`
+   1. Choose the base branch: `main`
+   1. Click **Create**
+1. A new branch is created in your GitHub repository. You can navigate to it directly from the link in the work item.
 
-1. **Committing to your Branch**
+   <details>
+   <summary>📸 Show screenshot</summary><br/>
 
-   - Create a simple change to the branch you created, such as updating the README file. This can be done in the GitHub UI by clicking the pencil icon to edit the file.
-   - Use a commit message like `AB#<workitem-id>` to automatically link the commit to the work item. Using the `fixes` keyword will automatically close the work item when the PR is merged.
-   - If you return to the Azure DevOps work item, you'll see the commit is now linked in the Development section. You can also manually link commits to work items after the fact inside the ADO work item by selecting `Add Link` under the development section and selecting a GitHub commit.
+   <img width="312" height="166" alt="SCR-20250827-nbnh" src="https://github.com/user-attachments/assets/4fcee008-1db1-43e8-b920-c0d523ddca07" />
 
-1. **Creating a Pull Request**
+   </details>
 
-   - Inside your GitHub repository click on the **Pull requests** tab.
-   - Click the **Compare & pull request** button in the banner at the top of the page.
-   - Give your pull request a clear title.
-   - Provide a description of the changes you made. You can use the `AB#<workitem-id>` syntax to link the pull request to the Azure DevOps work item.
-   - Click **Create pull request**.
+#### 📝 Committing to your Branch
 
-1. **Reviewing and Merging the Pull Request**
+1. Create a simple change to the branch you created, such as updating the README file. This can be done in the GitHub UI by clicking the pencil icon to edit the file.
+1. In your commit message, include `AB#<workitem-id>` to automatically link the commit to the work item.
 
-   - Notice any AB#<workitem-id> references in the pull request description will automatically convert to hyperlinks.
-   - If you return to the Azure DevOps work item, you'll see the pull request is now linked in the Development section. You can also manually link commits to work items after the fact inside the ADO work item by selecting Add Link under the development section and selecting a GitHub pull request.
-   - Notice that an Azure Pipelines build is triggered automatically on the PR. You can view the build status directly in the GitHub PR or click the build to be directed to the Azure Pipelines run.
-   - Merge the Pull Request once the build has passed. The PR will also require approval from at least one reviewer but as a repository admin you can bypass this functionality if needed.
-   - After the PR is merged, return to the Azure DevOps work item and observe the work item has been marked as `Done``.
+   ```txt
+   Update README with integration notes AB#1234
+   ```
 
-1. With the integration successfully tested, add a comment to this issue to complete the exercise and learn next steps:
+1. If you return to the Azure DevOps work item, you'll see the commit is now linked in the Development section.
+
+   <details>
+   <summary>📸 Show screenshot</summary><br/>
+
+   <img width="316" height="207" alt="SCR-20250827-ndgy" src="https://github.com/user-attachments/assets/268fa91b-81f2-4ff2-a18b-dfd6b6d0623e" />
+
+   </details>
+
+> [!TIP]
+> You can also manually link commits to work items after the fact inside the ADO work item by selecting `Add Link` under the development section and selecting a GitHub commit.
+
+#### 🔄 Creating a Pull Request
+
+1. Inside your GitHub repository click on the **Pull requests** tab click the **Compare & pull request** button.
+1. Include `AB#<workitem-id>` in your pull request description to automatically link it to the Azure DevOps work item.
+1. Click **Create pull request** and notice how the `AB#<workitem-id>` reference in the description automatically converts to a hyperlink.
+1. If you return to the Azure DevOps work item, you will see the pull request is now linked in the Development section.
+
+   <details>
+   <summary>📸 Show screenshot</summary><br/>
+
+   <img width="337" height="229" alt="SCR-20250827-niut" src="https://github.com/user-attachments/assets/6b7d3e85-5435-4f44-97a9-871c66dd8fbd" />
+
+
+   </details>
+
+1. Notice that an Azure Pipelines build is triggered automatically on the PR. You can view the build status directly in the GitHub PR or click the build to be directed to the Azure Pipelines run.
+
+   <!-- Add screenshot showing the Azure Pipeline build status in the GitHub pull request -->
+   
+1. Merge the Pull Request once the build has completed.
+
+   > 🪧 **Note:** The PR will also require approval from at least one reviewer but as a repository admin you can bypass this functionality.
+
+1. After the PR is merged, return to the Azure DevOps work item and observe the work item has been marked as `Done`.
+
+#### ✅ Complete the Exercise
+
+With the integration successfully tested, add a comment to this issue to complete the exercise and get a review!
 
    ```md
    Hey @professortocat, I've successfully integrated GitHub and Azure DevOps!
