@@ -56,13 +56,8 @@ Now let's configure [Azure DevOps](https://dev.azure.com/) credentials so we can
     <summary>Can't see some scopes? 👀 </summary><br/>
 
     Click **Show all scopes** at the bottom of this view
-<<<<<<< Updated upstream
-   
-    <img width="600" alt="Show all scopes link at the bottom of the token scopes view" src="../images/show-all-scopes-link.png" />
-=======
 
-    <img width="600" alt="Show all scopes link" src="https://github.com/user-attachments/assets/0752c646-9402-400e-9168-c55d0de219a4" />
->>>>>>> Stashed changes
+    <img width="600" alt="Show all scopes link at the bottom of the token scopes view" src="../images/show-all-scopes-link.png" />
 
     </details>
 
