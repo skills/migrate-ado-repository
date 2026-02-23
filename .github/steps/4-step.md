@@ -96,7 +96,7 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    <details>
    <summary>📸 Show screenshot</summary><br/>
 
-   <img width="312" height="166" alt="Branch created in GitHub from an Azure DevOps work item" src="../images/create-branch-workitem.png" />
+   <img width="300" alt="Branch created in GitHub from an Azure DevOps work item" src="../images/create-branch-workitem.png" />
 
    </details>
 
@@ -120,7 +120,7 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    <details>
    <summary>📸 Show screenshot</summary><br/>
 
-   <img width="316" height="207" alt="Commit linked to Azure DevOps work item in the Development section" src="../images/commit-linked-workitem.png" />
+   <img width="300" alt="Commit linked to Azure DevOps work item in the Development section" src="../images/commit-linked-workitem.png" />
 
    </details>
 
@@ -145,7 +145,7 @@ Now that we have both Azure DevOps Pipelines and Azure Boards integrated with Gi
    <details>
    <summary>📸 Show screenshot</summary><br/>
 
-   <img width="337" height="229" alt="Pull request linked to Azure DevOps work item in the Development section" src="../images/pull-request-linked-workitem.png" />
+   <img width="300" alt="Pull request linked to Azure DevOps work item in the Development section" src="../images/pull-request-linked-workitem.png" />
 
    </details>
 

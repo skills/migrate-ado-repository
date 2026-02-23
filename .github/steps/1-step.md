@@ -40,7 +40,7 @@ Now let's configure [Azure DevOps](https://dev.azure.com/) credentials so we can
 > If you do not have an Azure DevOps account you can sign up for free by following this [guide](https://learn.microsoft.com/azure/devops/user-guide/sign-up-invite-teammates?view=azure-devops&tabs=microsoft-account). Once you have an account you can create a new organization using these [instructions](https://learn.microsoft.com/azure/devops/organizations/accounts/create-organization?view=azure-devops).
 
 1. Navigate to your [Azure DevOps](https://dev.azure.com/) organization in a new browser tab.
-   > 🪧 **Note:** If this link doesn't redirect to your Organization, you can try the [ADO Organization Selection Portal](https://aex.dev.azure.com/)
+   > 🪧 **Note:** If this link doesn't redirect to your organization, you can try the [ADO Organization Selection Portal](https://aex.dev.azure.com/) and select your organization there.
 1. Click on `User Settings` in top right corner, next to your profile picture.
 1. Select `Personal access tokens` from the dropdown menu. Click `New Token` to create a new personal access token.
 1. Give your token a descriptive name (e.g., `GitHub Skills Migration Exercise`) and set the expiration to a shorter duration (e.g., 1 day).
