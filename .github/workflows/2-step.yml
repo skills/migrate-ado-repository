@@ -19,7 +19,7 @@ jobs:
   find_exercise:
     if: github.run_number != 1
     name: Find Exercise Issue
-    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.7.0
+    uses: skills/exercise-toolkit/.github/workflows/find-exercise-issue.yml@v0.8.1
 
   check_step_work:
     name: Check step work
@@ -31,18 +31,18 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Get response templates
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
-          ref: v0.7.0
+          ref: v0.8.1
 
       - name: Find last comment
         id: find-last-comment
-        uses: peter-evans/find-comment@v3
+        uses: peter-evans/find-comment@v4
         with:
           repository: ${{ env.ISSUE_REPOSITORY }}
           issue-number: ${{ env.ISSUE_NUMBER }}
@@ -60,7 +60,6 @@ jobs:
           case-sensitive: true
           minimum-occurrences: 1
           maximum-occurrences: 1
-
 
       - name: Check for target_github_repo_name configuration
         id: check-repo-name
@@ -102,11 +101,11 @@ jobs:
     outputs:
       config: ${{ steps.load-config.outputs.result }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Load YAML config with yq
         id: load-config
-        uses: mikefarah/yq@master
+        uses: mikefarah/yq@v4.52.4
         with:
           cmd: yq eval -o=json './ado/config.yml'
 
@@ -120,14 +119,14 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Get response templates
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: skills/exercise-toolkit
           path: exercise-toolkit
-          ref: v0.7.0
+          ref: v0.8.1
 
       - name: Create comment - step finished
         uses: GrantBirki/comment@v2.1.1
